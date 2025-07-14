@@ -9,7 +9,7 @@
   <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="module" async>
+  <script type="module">
     import { SplineViewer } from 'https://unpkg.com/@splinetool/viewer@1.10.28/build/spline-viewer.js';
     customElements.define('spline-viewer', SplineViewer);
   </script>
@@ -21,6 +21,14 @@
     .bloom {
       text-shadow: 0 0 6px rgba(255, 255, 255, 0.6), 0 0 12px rgba(255, 255, 255, 0.4);
     }
+    .fade-text {
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 
@@ -31,7 +39,7 @@
     function Navbar() {
       return (
         <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full flex justify-center">
-          <div className="flex items-center gap-6 px-8 py-3 bg-black bg-opacity-80 rounded-full backdrop-blur-md shadow-lg text-sm font-medium">
+          <div className="flex items-center gap-6 px-12 py-3 bg-black bg-opacity-80 rounded-full backdrop-blur-md shadow-lg text-sm font-medium w-fit">
             <img src="https://github.com/ReportforthisMonth/ZentricLayout/blob/main/Logo%20White%20Type%20copy2.png?raw=true" alt="Logo" className="h-6 sm:h-8 mr-4" />
             <a href="#" className="text-white hover:text-gray-300">ABOUT US</a>
             <a href="#" className="text-white hover:text-gray-300">SERVICES</a>
@@ -48,14 +56,14 @@
     function HeroSection() {
       return (
         <div className="relative h-screen w-full flex items-center justify-between px-6 sm:px-16 text-left overflow-hidden">
-          <div className="relative z-10 w-full sm:w-1/2 max-w-xl pl-24 sm:pl-40">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-tight bloom uppercase mb-6">
-              NEXT GEN WEB 3<br/>MARKETING AGENCY
+          <div className="relative z-10 w-full sm:w-1/2 max-w-xl pl-24 sm:pl-64">
+            <h1 className="fade-text text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight bloom uppercase mb-6">
+              NEXT GEN WEB 3 MARKETING AGENCY
             </h1>
-            <button className="mt-6 px-6 py-3 bg-white text-black text-sm sm:text-base font-semibold rounded-full hover:bg-gray-200 transition">
+            <button className="fade-text mt-6 px-6 py-3 bg-white text-black text-sm sm:text-base font-semibold rounded-full hover:bg-gray-200 transition">
               GET A FREE PROPOSAL
             </button>
-            <p className="mt-6 text-sm sm:text-base text-gray-300">
+            <p className="fade-text mt-6 text-sm sm:text-base text-gray-300">
               Zentric is your gateway to the future of Web3 — connecting communities, amplifying airdrops, and unlocking real value through strategy, innovation, and smart on-chain growth.
             </p>
           </div>
@@ -77,7 +85,7 @@
       );
     }
 
-    ReactDOM.render(<App />, document.getElementById("root"));
+    ReactDOM.render(React.createElement(App), document.getElementById("root"));
   </script>
 </body>
 
